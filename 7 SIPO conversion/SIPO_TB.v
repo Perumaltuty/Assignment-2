@@ -4,7 +4,7 @@ reg clear;
 
 reg si;
 
-wire [3:0] po;
+wire [7:0] po;
 
 sipomod uut (.clk(clk),.clear(clear),   .si(si),.po(po) );
 
