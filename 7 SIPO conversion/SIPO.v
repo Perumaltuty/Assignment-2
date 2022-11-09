@@ -1,12 +1,29 @@
-module sipo(ser_in,clk,reset,en_sipo,par_out_sipo);
-input ser_in,clk,reset,en_sipo;
-output reg[7:0]par_out_sipo;
-initial par_out_sipo=8'b0;
-always@(negedge clk or posedge reset)
+module sipomod(clk,clear, si, po);
+
+input clk, si,clear;
+
+  output [7:0] po;
+
+  reg [7:0] tmp;
+
+  reg [7:0] po;
+
+always @(posedge clk)
+
 begin
-if(reset)
-par_out_sipo<=8'b0;
-else if(en_sipo)
-par_out_sipo<={ser_in,par_out_sipo[7:1]};
+
+if (clear)
+
+tmp <= 4’b00000000;
+
+else
+
+tmp <= tmp << 1;
+
+tmp[0] <= si;
+
+po = tmp;
+
 end
+
 endmodule
